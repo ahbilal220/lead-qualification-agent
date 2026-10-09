@@ -5,6 +5,9 @@ to perform an uncontrolled external write. The agent validates and enriches a le
 computes a transparent score, drafts outreach, and pauses for human approval before
 syncing to the CRM adapter.
 
+**[Try the live interactive demo](https://ahmad-lead-qualification-agent.onrender.com)** ·
+**[Explore the API](https://ahmad-lead-qualification-agent.onrender.com/docs)**
+
 ## Workflow
 
 ```mermaid
@@ -43,6 +46,8 @@ reasons, draft, and audit events, then approve or reject it.
 
 The included `render.yaml` deploys the app as a free Render web service with a health
 check. You can also build the included Dockerfile; it honors the platform `PORT` value.
+Free Render services spin down after inactivity, so the first request can take about a
+minute while the service wakes up.
 
 ## Verify
 
