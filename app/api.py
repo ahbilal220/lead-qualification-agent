@@ -3,11 +3,13 @@ from __future__ import annotations
 from uuid import UUID
 
 from fastapi import FastAPI, HTTPException, status
+from fastapi.responses import HTMLResponse
 
 from app.agent import InvalidTransitionError, LeadQualificationAgent
 from app.models import DecisionRequest, HealthResponse, LeadCreate, LeadRecord
 from app.store import LeadStore
 from app.tools import DemoCRM
+from app.ui import LEAD_DEMO_HTML
 
 store = LeadStore()
 crm = DemoCRM()
@@ -18,6 +20,11 @@ app = FastAPI(
     version="0.1.0",
     description="Qualifies leads and drafts outreach, then pauses before CRM writes.",
 )
+
+
+@app.get("/", response_class=HTMLResponse, include_in_schema=False)
+async def demo() -> HTMLResponse:
+    return HTMLResponse(LEAD_DEMO_HTML)
 
 
 @app.get("/health", response_model=HealthResponse)

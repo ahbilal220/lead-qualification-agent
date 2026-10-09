@@ -35,8 +35,14 @@ pip install -e '.[dev]'
 uvicorn app.api:app --reload
 ```
 
-Open `http://localhost:8000/docs`. Create a lead with `POST /leads`, inspect the score,
+Open `http://localhost:8000` for the interactive portfolio demo. The API is available at
+`http://localhost:8000/docs`; create a lead with `POST /leads`, inspect the score,
 reasons, draft, and audit events, then approve or reject it.
+
+## Deploy
+
+The included `render.yaml` deploys the app as a free Render web service with a health
+check. You can also build the included Dockerfile; it honors the platform `PORT` value.
 
 ## Verify
 
@@ -59,4 +65,3 @@ pytest
 - Added a human-in-the-loop gate before side effects.
 - Made qualification scoring explainable rather than hiding it in a prompt.
 - Tested state transitions, duplicate approvals, and the write boundary.
-

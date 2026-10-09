@@ -5,6 +5,18 @@ import httpx
 from app.api import app, crm, store
 
 
+def test_demo_page_loads() -> None:
+    async def run() -> None:
+        transport = httpx.ASGITransport(app=app)
+        async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get("/")
+
+        assert response.status_code == 200
+        assert "Turn inbound leads" in response.text
+
+    asyncio.run(run())
+
+
 def test_end_to_end_approval_flow() -> None:
     async def run() -> None:
         store.records.clear()
